@@ -1,0 +1,605 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>استبيان  بنوتات - فريق قاع الهامور</title>
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Tajawal', sans-serif;
+            background-color: #fff5f8;
+            color: #333;
+            margin: 0;
+            padding: 0;
+            direction: rtl;
+        }
+        
+        /* صفحة الترحيب */
+        .welcome-page {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            background: linear-gradient(145deg, #ff9ed8 0%, #f0f0ff 100%);
+            padding: 20px;
+            text-align: center;
+        }
+        
+        .welcome-container {
+            background-color: rgba(255, 255, 255, 0.85);
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+            max-width: 600px;
+            width: 100%;
+        }
+        
+        .welcome-image {
+.       
+            max-width: 300px;
+            border-radius: 15px;
+            margin: 20px auto;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+        
+        .welcome-title {
+            color: #d44b9e;
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            text-shadow: 1px 1px 3px rgba(255, 255, 255, 0.8);
+        }
+        
+        .welcome-btn {
+            background-color: #ff7eb6;
+            color: white;
+            border: none;
+            padding: 15px 40px;
+            border-radius: 30px;
+            font-size: 1.3rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-top: 30px;
+            font-weight: bold;
+        }
+        
+        .welcome-btn:hover {
+            background-color: #ff5ca1;
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+        
+        /* Hide survey page initially */
+        .survey-container {
+            display: none;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #ff9ed8 0%, #f7c7e2 100%);
+            padding: 20px;
+            text-align: center;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .header h1 {
+            color: white;
+            font-size: 2.5rem;
+            margin: 0;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.2);
+        }
+
+        .team-members {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin-top: 15px;
+        }
+
+        .team-member {
+            background-color: rgba(255, 255, 255, 0.7);
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-weight: bold;
+            color: #d44b9e;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .team-name {
+            margin-top: 10px;
+            background-color: white;
+            display: inline-block;
+            padding: 5px 20px;
+            border-radius: 20px;
+            font-weight: bold;
+            color: #d44b9e;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 20px auto;
+            padding: 20px;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .section {
+            margin-bottom: 30px;
+            padding: 20px;
+            border-radius: 10px;
+            background-color: #fdf2f7;
+        }
+
+        .section h2 {
+            color: #d44b9e;
+            border-bottom: 2px dashed #ffb6d9;
+            padding-bottom: 10px;
+        }
+
+        .chat-message {
+            margin: 15px 0;
+            padding: 12px 15px;
+            border-radius: 18px;
+            position: relative;
+            max-width: 80%;
+            font-size: 1.1rem;
+        }
+
+        .question {
+            background-color: #e5a9ff;
+            color: #333;
+            margin-right: auto;
+            margin-left: 10px;
+            border-bottom-left-radius: 5px;
+        }
+
+        .answer {
+            background-color: #ffcce5;
+            color: #333;
+            margin-left: auto;
+            margin-right: 10px;
+            border-bottom-right-radius: 5px;
+        }
+
+        .photo-upload {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px;
+            border: 2px dashed #ffb6d9;
+            border-radius: 10px;
+            margin: 20px 0;
+        }
+
+        .photo-upload label {
+            background-color: #ff7eb6;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+        }
+
+        .photo-upload label:hover {
+            background-color: #ff5ca1;
+        }
+
+        .photo-upload input {
+            display: none;
+        }
+
+        .photo-preview {
+            margin-top: 20px;
+            max-width: 100%;
+            height: 200px;
+            border-radius: 10px;
+            border: 1px solid #ffb6d9;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #888;
+            background-color: #fff0f5;
+        }
+
+        .btn {
+            background-color: #ff7eb6;
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 25px;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-top: 10px;
+        }
+
+        .btn:hover {
+            background-color: #ff5ca1;
+            transform: translateY(-2px);
+        }
+
+        .quiz-form {
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+        }
+
+        .quiz-question {
+            margin-bottom: 20px;
+        }
+
+        .quiz-options label {
+            display: block;
+            padding: 10px 15px;
+            margin: 8px 0;
+            border-radius: 25px;
+            background-color: #fff0f5;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .quiz-options label:hover {
+            background-color: #ffcce5;
+        }
+
+        .emoji {
+            font-size: 1.5rem;
+            margin-right: 5px;
+        }
+
+        .profile-photo {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-left: 10px;
+        }
+
+        .photo-gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .photo-item {
+            height: 150px;
+            border-radius: 10px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .photo-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+
+        .photo-item img:hover {
+            transform: scale(1.05);
+        }
+
+        .text-input {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ffb6d9;
+            border-radius: 10px;
+            margin-top: 5px;
+            font-family: 'Tajawal', sans-serif;
+        }
+
+        textarea.text-input {
+            height: 100px;
+            resize: vertical;
+        }
+
+        footer {
+            text-align: center;
+            padding: 20px;
+            background-color: #ffb6d9;
+            color: white;
+            margin-top: 40px;
+        }
+
+        @media screen and (max-width: 768px) {
+            .container {
+                padding: 10px;
+            }
+
+            .chat-message {
+                max-width: 85%;
+            }
+
+            .header h1 {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- صفحة الترحيب -->
+    <div class="welcome-page" id="welcome-page">
+        <div class="welcome-container">
+            <h1 class="welcome-title">✨ استبيان بنوتات الثنوي ✨</h1>
+            <img src="Kai/a picture.jpg" class="welcome-image" id="welcome-mascot">
+            <h2>هلا نورتونا في سؤال وجواب مع فريق قاع الهامور</h2>
+            <div class="team-members">
+                <div class="team-member">👩🏿‍🎓 مروه</div>
+                <div class="team-member">👩🏻‍🎓 في</div>
+                <div class="team-member">👩🏽‍🎓 لجين</div>
+                <div class="team-member">👩🏻‍🎓 دعاء</div>
+                <div class="team-member">👩🏻‍🎓 الاء</div>
+            </div>
+            <button class="welcome-btn" id="start-survey">يلا نبدأ! 🚀</button>
+        </div>
+    </div>
+
+    <!-- صفحة الاستبيان -->
+    <div class="survey-container" id="survey-container">
+        <div class="header">
+            <p>يلا عطنا رأيك وسولف معنا بكل صراحة!</p>
+            <div class="team-members">
+                <div class="team-member">👩🏿‍🎓 مروه</div>
+                <div class="team-member">👩🏻‍🎓 في</div>
+                <div class="team-member">👩🏽‍🎓 لجين</div>
+                <div class="team-member">👩🏻‍🎓 دعاء</div>
+                <div class="team-member">👩🏻‍🎓 الاء</div>
+            </div>
+            <div class="team-name">فريق قاع الهامور 🌊🧽</div>
+        </div>
+
+        <div class="container">
+        <div class="section">
+            <h2>يا هلا بالشباب والبنات! 👋</h2>
+            <p>مرحباً فيك في استبيان فريق قاع الهامور! ودنا نعرف آراءك وتجاربك بشكل سوالف عادية. شاركنا بصراحة وارتاح! 🤗</p>
+        </div>
+
+        <div class="section">
+            <h2>سوالفي لنا     💬</h2>
+            <div class="chat-message question">
+                وش أكثر شي مشغلك هالفترة؟ 🤔
+            </div>
+            <div class="chat-message answer">
+                التفكير بالجامعة والمستقبل، ومحتار كيف أوازن بين المذاكرة وحياتي الخاصة! 🙃
+            </div>
+            <div class="chat-message question">
+                وش سالفة السناب والتيك توك والبنات؟ عطنا رأيك! 📱
+            </div>
+            <div class="chat-message answer">
+                والله فيها الزين وفيها الشين. أستفيد منها بمقاطع علمية ومعلومات جديدة، بس أحيانًا تضيع وقتي بدون فايدة! 🤷‍♀️
+            </div>
+            <div class="chat-message question">
+                كيف تتعامل مع ضغوطات الدراسة والاختبارات؟ 💪
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>الاستبيان 📝</h2>
+            <p>يلا عطنا رأيك في هالأسئلة (بدون مجاملة وبكل صدق):</p>
+            <form id="quiz-form" class="quiz-form">
+                <div class="quiz-question">
+                    <h3>1. وش أكثر موضوع يشغل بالك هاليومين؟</h3>
+                    <div class="quiz-options">
+                        <label>
+                            <input type="radio" name="question1" value="study">
+                            المذاكرة والدرجات 📚
+                        </label>
+                        <label>
+                            <input type="radio" name="question1" value="university">
+                            القبول بالجامعة والتخصص 🎓
+                        </label>
+                        <label>
+                            <input type="radio" name="question1" value="friends">
+                            الربع والطلعات 👯
+                        </label>
+                        <label>
+                            <input type="radio" name="question1" value="skills">
+                     مين بياخذ الدوري(يارب مو الهلال)⚽
+                        </label>
+                        <label>
+                            <input type="radio" name="question1" value="other">
+                            شي ثاني (اكتبه) 🤔
+                            <input type="text" class="text-input" name="question1_other">
+                        </label>
+                    </div>
+                </div>
+
+                <div class="quiz-question">
+                    <h3>2. وش تسوي في وقت فراغك أغلب الأوقات؟</h3>
+                    <div class="quiz-options">
+                        <label>
+                            <input type="radio" name="question2" value="social">
+                            أقلب في السناب والانستا 📱
+                        </label>
+                        <label>
+                            <input type="radio" name="question2" value="hobby">
+                            أمارس هواية أو رياضة 🎨
+                        </label>
+                        <label>
+                            <input type="radio" name="question2" value="friends">
+                            أطلع صديقاتي 👫
+                        </label>
+                        <label>
+                            <input type="radio" name="question2" value="games">
+                            ألعب قيمز 🎮
+                        </label>
+                        <label>
+                            <input type="radio" name="question2" value="streaming">
+                           او يتويوب بندريتا✌🏾🤍   أشاهد نتفلكس (والعياذ بالله)أو أنمي 🎬
+                        </label>
+                        <label>
+                            <input type="radio" name="question2" value="other">
+                            شي ثاني (اكتبه) 🤔
+                            <input type="text" class="text-input" name="question2_other">
+                        </label>
+                    </div>
+                </div>
+
+                <div class="quiz-question">
+                    <h3>3. وش أكبر مشكلة تواجهك بالحياة حالياً؟</h3>
+                    <div class="quiz-options">
+                        <label>
+                            <input type="radio" name="question3" value="pressure">
+                            ضغط الأهل والمدرسة لتحصيل درجات عالية ⚡
+                        </label>
+                        <label>
+                            <input type="radio" name="question3" value="confidence">
+                            عدم الثقة بالنفس والخوف من رأي الناس 💭
+                        </label>
+                        <label>
+                            <input type="radio" name="question3" value="friends">
+                            صعوبة تكوين صداقات جديدة 🤝
+                        </label>
+                        <label>
+                            <input type="radio" name="question3" value="anxiety">
+                        
+                         التوتر والقلق من المستقبل(ترى كيف بيكون زوجي المستقبلي كيف بيكون عيالي 🤔)
+                        </label>
+                        <label>
+                            <input type="radio" name="question3" value="other">
+                            شي ثاني (اكتبه) 🤔
+                            <input type="text" class="text-input" name="question3_other">
+                        </label>
+                    </div>
+                </div>
+
+                <div class="quiz-question">
+                    <h3>4. وش أكثر شيء يفرحك ويبسطك هاليومين؟</h3>
+                    <div class="quiz-options">
+                        <label>
+                            <input type="radio" name="question4" value="events">
+                            حضور الفعاليات والمواسم بالمملكة 🎪
+                        </label>
+                        <label>
+                            <input type="radio" name="question4" value="family">
+                            جلسات العائلة والقهوة مع الوالدين 👨‍👩‍👧‍👦
+                        </label>
+                        <label>
+                            <input type="radio" name="question4" value="success">
+                            النجاح بالدراسة وتحقيق هدف 🥇
+                        </label>
+                        <label>
+                            <input type="radio" name="question4" value="trips">
+                            الرحلات والطلعات مع الصحبات 🚗
+                        </label>
+                        <label>
+                            <input type="radio" name="question4" value="other">
+                            شي ثاني (اكتبه) 🤔
+                            <input type="text" class="text-input" name="question4_other">
+                        </label>
+                    </div>
+                </div>
+
+                <div class="quiz-question">
+                    <h3>5. وش رأيك عن تطور الترفيه بالسعودية للشباب والبنات؟</h3>
+                    <div class="quiz-options">
+                        <label>
+                            <input type="radio" name="question5" value="great">
+                            مرة حلو وأحس بتغير إيجابي كبير 🤩
+                        </label>
+                        <label>
+                            <input type="radio" name="question5" value="good">
+                            زين بس محتاج فعاليات أكثر للشباب 👍
+                        </label>
+                        <label>
+                            <input type="radio" name="question5" value="neutral">
+                            عادي، ما أحس بفرق كبير 😐
+                        </label>
+                        <label>
+                            <input type="radio" name="question5" value="expensive">
+                            حلو بس غالي وما يناسب الميزانية 💸
+                        </label>
+                        <label>
+                            <input type="radio" name="question5" value="other">
+                            رأي ثاني (اكتبه) 🤔
+                            <input type="text" class="text-input" name="question5_other">
+                        </label>
+                    </div>
+                </div>
+
+                <div class="quiz-question">
+                    <h3>. وش أكثر شي تبغاه ؟</h3>
+                    <textarea class="text-input" name="question6" placeholder="اكتب رأيك هنا..."></textarea>
+                </div>
+
+                <button type="submit" class="btn">إرسال إجاباتي 🚀</button>
+            </form>
+        </div>
+
+
+        <div class="section">
+            <h2>نصائح    🌟</h2>
+            <div class="chat-message answer">
+                خليكي منظوم ولا تخلي المذاكرة آخر ليلة، يمديكي تحطي وقت للنت وللدراسة 🧘‍♀️
+            </div>
+            <div class="chat-message answer">
+                لا تصدقي كل شي بالسوشال، الناس تنزل اللقطات الحلوة بس وتخفي المشاكل! 📱
+            </div>
+            <div class="chat-message answer">
+                لا تستحي تتكلمي عن مشاكلك مع أهلك أو المرشد، عادي تطلبي مساعدة! 💪
+            </div>
+            <div class="chat-message answer">
+                اختاري صديقات يدعمونك ويخلونك أحسن، مو بس للوناسة والهياط! 👯‍♂️
+            </div>
+            <div class="chat-message answer">
+(يعني لو كان في)
+روح الفعاليات بمدينتك واستفد من المواسم، فيها فعاليات مرة رهيبة ومفيدة! 🎭
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <p>مشروع فريق قاع الهامور © 2025</p>
+        <div class="team-members">
+            <div class="team-member">👩🏿‍🎓 مروه</div>
+            <div class="team-member">👩🏻‍🎓 في</div>
+            <div class="team-member">👩🏽‍🎓 لجين</div>
+            <div class="team-member">👩🏻‍🎓 دعاء</div>
+            <div class="team-member">👩🏻‍🎓 الاء</div>
+        </div>
+    </footer>
+
+    <script>
+        // التبديل بين الصفحات
+        document.getElementById('start-survey').addEventListener('click', function() {
+            document.getElementById('welcome-page').style.display = 'none';
+            document.getElementById('survey-container').style.display = 'block';
+            window.scrollTo(0, 0);
+        });
+        
+        // صورة المعاينة
+        document.getElementById('photo-upload').addEventListener('change', function(event) {
+            const file = event.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    document.querySelector('.photo-preview').innerHTML = `<img src="${e.target.result}" style="max-width: 100%; max-height: 100%; border-radius: 8px;">`;
+                }
+                reader.readAsDataURL(file);
+            }
+        });
+
+        // إرسال الاستبيان
+        document.getElementById('quiz-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('يعطيك العافية! وصلتنا إجاباتك وتم تسجيلها بنجاح 🎉');
+        });
+        
+        // تحميل صورة الفأر (محاولة استخدام الصورة المرفقة)
+        document.addEventListener('DOMContentLoaded', function() {
+            // يمكن استبدال هذا برابط الصورة الحقيقية
+            const mouseImage = document.getElementById('welcome-mascot');
+            // محاولة استخدام الصورة من الملفات المرفقة إن وجدت
+            // أو استخدام صورة بديلة
+            mouseImage.onerror = function() {
+                this.src = '/api/placeholder/300/300';
+            };
+        });
+    </script>
+</body>
+</html
