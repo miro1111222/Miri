@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>استبيان  بنوتات - فريق قاع الهامور</title>
+    <title>استبيان بنوتات - فريق قاع الهامور</title>
     <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700&display=swap" rel="stylesheet">
     <style>
         body {
@@ -37,7 +37,6 @@
         }
         
         .welcome-image {
-.       
             max-width: 300px;
             border-radius: 15px;
             margin: 20px auto;
@@ -71,8 +70,43 @@
         }
         
         /* Hide survey page initially */
-        .survey-container {
+        .survey-container, .goodbye-page {
             display: none;
+        }
+
+        /* صفحة الوداع */
+        .goodbye-page {
+            display: none;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            background: linear-gradient(145deg, #ff9ed8 0%, #f0f0ff 100%);
+            padding: 20px;
+            text-align: center;
+        }
+        
+        .goodbye-container {
+            background-color: rgba(255, 255, 255, 0.85);
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+            max-width: 600px;
+            width: 100%;
+        }
+        
+        .goodbye-image {
+            max-width: 300px;
+            border-radius: 15px;
+            margin: 20px auto;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+        
+        .goodbye-title {
+            color: #d44b9e;
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            text-shadow: 1px 1px 3px rgba(255, 255, 255, 0.8);
         }
 
         .header {
@@ -364,14 +398,14 @@
             <div class="chat-message question">
                 وش أكثر شي مشغلك هالفترة؟ 🤔
             </div>
-            <div class="chat-message answer">
-                التفكير بالجامعة والمستقبل، ومحتار كيف أوازن بين المذاكرة وحياتي الخاصة! 🙃
+            <div class="chat-message question">
+اخلاقك قافله هالفتره؟قافله ولا مفتوحه ه ه ه 😀
             </div>
             <div class="chat-message question">
-                وش سالفة السناب والتيك توك والبنات؟ عطنا رأيك! 📱
+                 ايش رايك بالترندات شاركينا
             </div>
-            <div class="chat-message answer">
-                والله فيها الزين وفيها الشين. أستفيد منها بمقاطع علمية ومعلومات جديدة، بس أحيانًا تضيع وقتي بدون فايدة! 🤷‍♀️
+            <div class="chat-message question">
+            لو ما كان في قوانين او قواعد ايش اول شيء ممكن تسويه؟؟🎥
             </div>
             <div class="chat-message question">
                 كيف تتعامل مع ضغوطات الدراسة والاختبارات؟ 💪
@@ -523,14 +557,38 @@
                 </div>
 
                 <div class="quiz-question">
-                    <h3>. وش أكثر شي تبغاه ؟</h3>
-                    <textarea class="text-input" name="question6" placeholder="اكتب رأيك هنا..."></textarea>
+                    <h3>6. وش رأيك فينا وفي شغلنا؟</h3>
+                    <div class="quiz-options">
+                        <label>
+                            <input type="radio" name="question6" value="amazing">
+                            مره أبدعتو! خليتونا مبسوطين ومتحمسين دايمًا!
+                        </label>
+                        <label>
+                            <input type="radio" name="question6" value="perfect">
+                            100٪ بدون مبالغة!
+                        </label>
+                        <label>
+                            <input type="radio" name="question6" value="song">
+                            زي ما قال عبدالمجيد: "يا احلى من مر علي دنيا وطاب وذاق العمر"!
+                        </label>
+                        <label>
+                            <input type="radio" name="question6" value="above">
+                            فوق التقييم! ما في كلام يوصفكم!
+                        </label>
+                        <label>
+                            <input type="radio" name="question6" value="other">
+                           اكتب رأيك هنا (نبغى نسمع صوتك) 🫶
+                            <input type="text" class="text-input" name="question6_other">
+                        </label>
+                    </div>
                 </div>
-
-                <button type="submit" class="btn">إرسال إجاباتي 🚀</button>
+                
+                <div class="text-center" style="text-align: center; margin-top: 30px;">
+                    <button class="btn" type="submit">ارسلي الاستبيان ✨</button>
+                    <button class="btn" type="button" id="goodbye-btn" style="margin-right: 10px; background-color: #ffb6d9;">مع السلامة 👋</button>
+                </div>
             </form>
         </div>
-
 
         <div class="section">
             <h2>نصائح    🌟</h2>
@@ -547,21 +605,38 @@
                 اختاري صديقات يدعمونك ويخلونك أحسن، مو بس للوناسة والهياط! 👯‍♂️
             </div>
             <div class="chat-message answer">
-(يعني لو كان في)
-روح الفعاليات بمدينتك واستفد من المواسم، فيها فعاليات مرة رهيبة ومفيدة! 🎭
+                (يعني لو كان في)
+                روح الفعاليات بمدينتك واستفد من المواسم، فيها فعاليات مرة رهيبة ومفيدة! 🎭
             </div>
         </div>
     </div>
-
-    <footer>
-        <p>مشروع فريق قاع الهامور
     
-© 2025</p>
-<p> تصميم وبرمجة ميرو✨✌🏾</p>
+    <!-- صفحة الوداع -->
+    <div class="goodbye-page" id="goodbye-page">
+        <div class="goodbye-container">
+            <h1 class="goodbye-title">✨ شكراً لمشاركتك معنا! ✨</h1>
+            <img src="/api/placeholder/300/200" class="goodbye-image" alt="صورة وداع">
+            <h2>نتمنى نكون استفدنا من آرائكم وتجاربكم</h2>
+            <p style="font-size: 1.2rem; margin: 20px 0;">آراؤكم مهمة لنا وراح نستفيد منها في تطوير أفكارنا ومشاريعنا القادمة!</p>
+            <div class="team-members">
+                <div class="team-member">👩🏿‍🎓 مروه</div>
+                <div class="team-member">👩🏻‍🎓 في</div>
+                <div class="team-member">👩🏼‍🎓 لجين</div>
+                <div class="team-member">👩🏻‍🎓 دعاء</div>
+                <div class="team-member">👩🏻‍🎓 الاء</div>
+            </div>
+            <div class="team-name">فريق قاع الهامور 🌊🧽</div>
+            <button class="welcome-btn" id="back-to-start">العودة للصفحة الرئيسية 🏠</button>
+        </div>
+    </div>
+    
+    <footer>
+        <p>مشروع فريق قاع الهامور © 2025</p>
+        <p>تصميم وبرمجة ميرو✨✌🏾</p>
         <div class="team-members">
             <div class="team-member">👩🏿‍🎓 مروه</div>
             <div class="team-member">👩🏻‍🎓 في</div>
-            <div class="team-member">👩🏽‍🎓 لجين</div>
+            <div class="team-member">👩🏼‍🎓 لجين</div>
             <div class="team-member">👩🏻‍🎓 دعاء</div>
             <div class="team-member">👩🏻‍🎓 الاء</div>
         </div>
@@ -572,37 +647,31 @@
         document.getElementById('start-survey').addEventListener('click', function() {
             document.getElementById('welcome-page').style.display = 'none';
             document.getElementById('survey-container').style.display = 'block';
-            window.scrollTo(0, 0);
+            document.getElementById('goodbye-page').style.display = 'none';
         });
         
-        // صورة المعاينة
-        document.getElementById('photo-upload').addEventListener('change', function(event) {
-            const file = event.target.files[0];
-            if (file) {
-                const reader = new FileReader();
-                reader.onload = function(e) {
-                    document.querySelector('.photo-preview').innerHTML = `<img src="${e.target.result}" style="max-width: 100%; max-height: 100%; border-radius: 8px;">`;
-                }
-                reader.readAsDataURL(file);
-            }
+        // زر الوداع للانتقال لصفحة الوداع
+        document.getElementById('goodbye-btn').addEventListener('click', function() {
+            document.getElementById('welcome-page').style.display = 'none';
+            document.getElementById('survey-container').style.display = 'none';
+            document.getElementById('goodbye-page').style.display = 'flex';
         });
-
+        
+        // زر الرجوع للصفحة الرئيسية
+        document.getElementById('back-to-start').addEventListener('click', function() {
+            document.getElementById('welcome-page').style.display = 'flex';
+            document.getElementById('survey-container').style.display = 'none';
+            document.getElementById('goodbye-page').style.display = 'none';
+        });
+        
         // إرسال الاستبيان
-        document.getElementById('quiz-form').addEventListener('submit', function(e) {
-            e.preventDefault();
-            alert('يعطيك العافية! وصلتنا إجاباتك وتم تسجيلها بنجاح 🎉');
-        });
-        
-        // تحميل صورة الفأر (محاولة استخدام الصورة المرفقة)
-        document.addEventListener('DOMContentLoaded', function() {
-            // يمكن استبدال هذا برابط الصورة الحقيقية
-            const mouseImage = document.getElementById('welcome-mascot');
-            // محاولة استخدام الصورة من الملفات المرفقة إن وجدت
-            // أو استخدام صورة بديلة
-            mouseImage.onerror = function() {
-                this.src = '/api/placeholder/300/300';
-            };
+        document.getElementById('quiz-form').addEventListener('submit', function(event) {
+            event.preventDefault();
+            alert('تم إرسال استبيانك بنجاح! شكراً لمشاركتك 🌸');
+            document.getElementById('welcome-page').style.display = 'none';
+            document.getElementById('survey-container').style.display = 'none';
+            document.getElementById('goodbye-page').style.display = 'flex';
         });
     </script>
 </body>
-</html
+</html>
